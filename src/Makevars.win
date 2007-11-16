@@ -1,0 +1,4 @@
+PKG_CFLAGS=-DUSEDOUBLE -DWINDOWS -Wno-unused
+
+PKG_LIBS=-lm 
+

@@ -1,0 +1,4 @@
+PKG_CFLAGS=-DUSEDOUBLE -Wno-unused
+
+PKG_LIBS=-lm
+

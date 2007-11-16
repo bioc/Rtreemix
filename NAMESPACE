@@ -1,0 +1,31 @@
+useDynLib(Rtreemix)
+
+import(Biobase)
+import(methods)
+import(graph)
+
+importFrom("Hmisc", "rcorr")
+
+##import(Rgraphviz)
+importFrom("graphics", "plot")
+
+## Classes to be exported
+exportClasses(RtreemixData, RtreemixModel,
+              RtreemixSim, RtreemixStats, RtreemixGPS)
+
+## Methods to be exported
+exportMethods(initialize, print, show,
+          Sample, Events, Patients, Description, sampleSize, eventsNum, ##RtreemixData
+          "Events<-", "Patients<-", "Description<-",  ##RtreemixData
+          Weights, "Weights<-", WeightsCI, Resp, CompleteMat, Star, Trees, numTrees, getTree, getData, plot, ## RtreemixModel
+              Model, LogLikelihoods, WLikelihoods, getResp, ## RtreemixStats
+              SamplingMode, SamplingParam, GPS, gpsCI, ## RtreemixGPS
+          SimPatterns, SamplingTimes, WaitingTimes, getModel, noDraws, ## RtreemixSim
+              fit, bootstrap, likelihoods, gps, confIntGPS, sim, generate, distribution ## other methods
+              )
+
+## Functions to be exported
+export(Pval.dist, kullback.leibler, L1.dist, cosin.dist, L2.norm, euclidian.dist, rank.cor.dist, ## similarity measures for vectors
+       get.tree.levels, comp.models, comp.models.levels, comp.trees, comp.trees.levels, ## similarity measures for tree topologies
+       stability.sim  ## stability analysis function
+       )
