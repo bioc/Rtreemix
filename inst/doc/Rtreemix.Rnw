@@ -22,7 +22,7 @@
 \usepackage{Sweave}
 \SweaveOpts{prefix.string = Rtreemix}
 
-\title{\vspace*{-6ex} The mutagenetic trees mixture models in the world of {\bf Rtreemix}}
+\title{\vspace*{-6ex} {\bf Rtreemix}: a package for estimating mutagenetic trees mixture models and genetic progression scores}
 \author{Jasmina Bogojeska,  J\"org Rahnenf\"uhrer}
 \date{\today \\%
   \texttt{http://www.mpi-sb.mpg.de/$\sim$jasmina}}
@@ -37,18 +37,17 @@ options(width = 70)
 \section{Introduction}
 The mixture of mutagenetic trees introduced in \cite{Beer12005} is an
 evolutionary model that provides an interpretable probabilistic
-framework for modeling multiple paths of ordered accumulation of permanent genetic changes.
-They were used to model \texttt{HIV} progression characterized by accumulation
-of resistance mutations in the viral genome under drug pressure \cite{Beer12005} and
+framework for modeling multiple paths of ordered accumulation of permanent genetic changes that 
+can be used for describing many disease processes. Each path captures a possible route of 
+disease development. These models are used to model \texttt{HIV} progression characterized 
+by accumulation of resistance mutations in the viral genome under drug pressure \cite{Beer12005} and
 cancer progression by accumulation of chromosomal aberrations in
-tumor cells \cite{Rahn2005}. Each path captures a possible route of disease development.
-From the mixture model, a genetic progression score (\texttt{GPS})
+tumor cells \cite{Rahn2005}. From the mixture model, a genetic progression score (\texttt{GPS})
 can be computed for each patient \cite{Rahn2005} that gives an estimate of the
-progression of the disease process and can be used for specifying therapies
-or estimating survival times of the patients.
-Both the mixture model itself and the derived \texttt{GPS} values were shown to improve the
+disease progression and can be used for specifying therapies or estimating survival times of the patients.
+Both the mixture model itself and the derived \texttt{GPS} values are shown to improve the
 interpretation of disease progression and to have predictive power for estimating the drug resistance
-in \texttt{HIV} or the survival time in cancer.
+in \texttt{HIV} \cite{Beer12005} or the survival time in cancer \cite{Rahn2005}.
 Beerenwinkel \textit{et al.} in \cite{Beer22005} introduced the \texttt{Mtreemix} package implemented in
 \texttt{C/C++} that provides an efficient code for estimating the mutagenetic trees mixture models from cross-sectional
 data and using them for various predictions. Building up on the \texttt{Mtreemix} software and using the \texttt{C/C++} API that
@@ -57,8 +56,9 @@ our package provides the users with \texttt{R} functions as efficient as the
 programs available in the \texttt{Mtreemix}.
 Similar to \texttt{Mtreemix}, the \texttt{Rtreemix} package provides functions
 for learning the mixture model from given data, simulation, likelihood computation
-and estimation of the GPS values. Furthermore, it introduces new functionality and
-some improvements of the \texttt{C/C++} implementation. The available functions are presented in Table 3.2.
+and estimation of the GPS values. Furthermore, it introduces new functionality for estimating genetic 
+progression scores with corresponding bootstrap confidence intervals and for performing stability 
+analysis of the mixture models \cite{Bogo2008}.
 
 \section{Structure and Functionality}
 The class structure of the \texttt{Rtreemix} package is given in Figure~\ref{fig:classes}. 
@@ -78,12 +78,12 @@ library(Rtreemix)
 @
 \subsection{The Dataset and the \textit{RtreemixData} class}
 The datasets used for estimating the mixture models consist of binary patterns that describe the occurrence
-of a set of genetic events in a group of patients. Each pattern corresponds to a single patient. The set of genetic
+of a set of genetic events in a set of patients. Each pattern corresponds to a single patient. The set of genetic
 events comprises genetic changes relevant for the disease taken into consideration. In \texttt{Rtreemix} the data used for
 estimating a mutagenetic trees mixture model is represented as an object of the class \texttt{RtreemixData}.
 We consider the dataset from the Stanford \texttt{HIV} Drug Resistance Database \cite{Rhee2003} that comprises genetic
 measurements of 364 \texttt{HIV} patients treated only with the drug \textit{zidovudine}. This dataset is given as an \texttt{RtreemixData} object 
-\textit{hiv.data.RData} in the \textit{data} folder of the package. Therefore, we first load the data.
+\textit{hiv.data.RData} in the \textit{data} folder of the package and can be loaded and displayed as follows. 
 <<results = hide>>=
 data(hiv.data)
 show(hiv.data) ## show the RtreemixData object
@@ -110,7 +110,7 @@ eventsNum(hiv.data)
 sampleSize(hiv.data)
 @
 \subsection{Learning mutagenetic trees mixture models}
-Having a set of profiles for a group of patients suffering from a certain disease
+Having a set of patterns that indicate the occurence of genetic events for a group of patients
 we can learn a mutagenetic trees mixture model. The model is an object of the \texttt{RtreemixModel} class that extends the
 \texttt{RtreemixData} class. We fit a 2-trees mixture model for the \texttt{HIV} data \cite{Rhee2003}.
 <<results = hide>>=
@@ -133,7 +133,7 @@ second tree component of the mixture model learned from the \texttt{HIV} dataset
 dev.off()
 plot(mod, k=2, fontSize = 14)
 @
-It is assumed that mixture models with at least two components always have the noise (star) component as a first component. When only one tree component is fitted to the given data it can be a star or a nontrivial tree component based on the choice of the parameter \texttt{noise}.
+It is assumed that mixture models with at least two components always have the noise (star) component as a first component. When only one tree component is fitted to the given data it can be either a star or a nontrivial tree component based on the choice of the parameter \texttt{noise}.
 The mixture components comprising the model are represented as a list of directed \texttt{graphNEL} objects, and their weights (the mixture parameters) are given as a numeric vector. There are functions for getting the mixture parameters of the model, the number of tree components, the dataset used for estimating the model, etc.
 <<results = hide>>=
 Weights(mod)
@@ -181,7 +181,7 @@ in the specified dataset.
 getResp(mod.stat)
 @
 \subsection{The \texttt{sim} method}
-The mutagenetic trees mixture provides a probability distribution on the set of all possible profiles for a specified set of genetic events.
+The mutagenetic trees mixture model encodes a probability distribution on the set of all possible patterns for a specified set of genetic events.
 The \texttt{sim} method provides the possibility of simulating (drawing) patterns from a given \texttt{RtreemixModel}. The simulated patterns
 are then returned as an \texttt{RtreemixData} object. Let's draw a specified number of patterns from our randomly generated model.
 <<results = hide>>=
@@ -198,7 +198,7 @@ and for the sampling time of the disease, waiting times can be mapped on the tre
 Consequently, a genetic progression score (\texttt{GPS}) that incorporates correlations among events and time intervals among
 occurrences of events can be associated to the mixture model as proposed in \cite{Rahn2005}. The \texttt{GPS} estimates the
 stage of the disease and is important for estimating survival times and giving patients proper therapies.
-In the \texttt{Rtreemix} package the method \texttt{gps} calculates the \texttt{GPS} of a given set of genetic profiles
+In the \texttt{Rtreemix} package the method \texttt{gps} calculates the \texttt{GPS} of a given set of patterns
 with respect to a specified mixture model (an \texttt{RtreemixModel} object). The GPS values are derived in a waiting time
 simulation for a given large number of simulation iterations, and for a specified sampling mode ("constant" or "exponential")
 and its corresponding sampling parameter. The result of the \texttt{GPS} calculation is given as an
@@ -218,8 +218,9 @@ In the simulation study typically attributes from simulated true mixture models 
 models fitted to observations drawn from these true models. The similarity between the true and the fitted model is then 
 compared to the similarities between the true and a sufficient number of random models sampled uniformly from the mixture model space. 
 The quality of a fitted attribute is then assessed by estimating a p-value as the percentage of cases in which the true model is closer 
-to a random model than to the fitted model with respect to the chosen model attribute. Details and examples for the stability analysis of a
-mutagenetic trees mixture models are given in the \textit{doc} folder of the package in the PDF file \textit{ExtendedVignette}. 
+to a random model than to the fitted model with respect to the chosen model attribute. More details about performing stability analysis 
+of the mutagenetic tree mixture modes and interpreting the results can be found in \cite(Bogo2008). Simple code examples for the 
+stability analysis of a mutagenetic trees mixture models are given in the \textit{doc} folder of the package in the PDF file \textit{ExtendedVignette}. 
            
 \bibliography{Rtreemix}
 \bibliographystyle{unsrt}
