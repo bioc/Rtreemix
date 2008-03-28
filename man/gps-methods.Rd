@@ -38,7 +38,8 @@
 
 \arguments{
   \item{model}{An object of the class \code{RtreemixModel} specifying
-    the mutagenetic trees mixture model used for deriving the GPS values.}  
+    the mutagenetic trees mixture model used for deriving the GPS values. 
+    The model should NOT have more than 20 genetic events.}  
   \item{data}{An \code{RtreemixData} object or a 0-1 \code{matrix}
     containing the samples (patterns of genetic events) for which the GPS values
     are to be calculated. The length of each of them has to be equal
@@ -70,6 +71,10 @@
   genetic tumor progression scores, J. Rahnenf\"urer et al. }
 
 \note{
+    The mixture model used for deriving the GPS values should not have more than 
+    20 genetic events. The reason for this is that the number of all possible patterns 
+    for which the GPS values are calculated during a computationally intensive simulations 
+    is in this case 2^20.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 } 

@@ -24,7 +24,8 @@
 \arguments{
   \item{data}{An \code{RtreemixData} object containing the samples
     (patterns of genetic events) for which the GPS values and their
-    bootstrap confidence intervals are to be calculated.}
+    bootstrap confidence intervals are to be calculated. The number 
+    of genetic events should NOT be greater than 20.}
   \item{K}{An \code{integer} larger than 0 specifying the number of
     branchings in the mixture model.}
   \item{...}{
@@ -57,9 +58,14 @@
 }
 
 \note{
+    The data for which the GPS values and their corresponding 
+    confidence intervals are to be calculated should not have more 
+    than 20 genetic events. The reason for this is that the number of all possible patterns 
+    for which the GPS values are calculated during a computationally intensive simulations 
+    is in this case 2^20.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
-} 
+}
 
 \author{Jasmina Bogojeska }
 
