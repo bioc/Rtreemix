@@ -7,9 +7,6 @@
 \alias{gps,RtreemixModel,matrix-method}
 \alias{gps,RtreemixModel,missing-method}
 
-
-
-
 \title{Methods for predicting the GPS of given dataset by
   using a given mutagenetic trees mixture model}
 \description{
@@ -22,17 +19,17 @@
 }
 
 \usage{
-\S4method{gps}{RtreemixModel,RtreemixData}(model, data, ...)
-\S4method{gps}{RtreemixModel,matrix}(model, data, ...)
-\S4method{gps}{RtreemixModel,missing}(model, data, ...)
+\S4method{gps}{RtreemixModel,RtreemixData}(model, data, \dots)
+\S4method{gps}{RtreemixModel,matrix}(model, data, \dots)
+\S4method{gps}{RtreemixModel,missing}(model, data, \dots)
 }
 
 \section{Methods}{\describe{
-    \item{model = "RtreemixModel", data = "RtreemixData", ...}{A method for calculating
+    \item{model = "RtreemixModel", data = "RtreemixData", \dots}{A method for calculating
       the GPS values of the data given as \code{RtreemixData} object.}
-    \item{model = "RtreemixModel", data = "matrix", ...}{A method for calculating
+    \item{model = "RtreemixModel", data = "matrix", \dots}{A method for calculating
       the GPS values of the data given as 0-1 \code{matrix}.}
-    \item{model = "RtreemixModel", data = "missing", ...}{A method for calculating
+    \item{model = "RtreemixModel", data = "missing", \dots}{A method for calculating
       the GPS values of the set of all possible patterns.}    
 }}
 
@@ -44,7 +41,7 @@
     containing the samples (patterns of genetic events) for which the GPS values
     are to be calculated. The length of each of them has to be equal
     to the number of genetic events in the \code{model}.}
-  \item{...}{ 
+  \item{\dots}{ 
     \code{sampling.mode} is a \code{character} that specifies the
     sampling mode ("constant" or "exponential") used in the waiting time
     simulations. Its default value is "exponential".
@@ -61,7 +58,7 @@
 
 \value{
   The function returns an object from the \code{RtreemixGPS} class that
-  containes the calculated GPS values, the model used for the
+  contains the calculated GPS values, the model used for the
   computation, the data, and so on (see
   \code{\link{RtreemixGPS-class}}). The GPS values are represented as a
   \code{numeric} vector with length equal to the number of samples in \code{data}.
@@ -74,7 +71,7 @@
     The mixture model used for deriving the GPS values should not have more than 
     20 genetic events. The reason for this is that the number of all possible patterns 
     for which the GPS values are calculated during a computationally intensive simulations 
-    is in this case 2^20. This demands too much memory.
+    is in this case $2^{20}$. This demands too much memory.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 } 
@@ -97,20 +94,19 @@
 #show(mod)
 
 ## Create an RtreemixGPS object by calculating the GPS for all possible patterns.
-#modGPS.all <- gps(model = mod, no.sim = 1000) ## time consuming copmutations
+#modGPS.all <- gps(model = mod, no.sim = 1000) ## time consuming computations
 #show(modGPS.all)
 
 ## See the GPS values for all possible data.
-#GPS(modGPS.all) ## time consuming copmutations
+#GPS(modGPS.all) ## time consuming computations
 
 ## Create an RtreemixGPS object by calculating the GPS for the data based on the model mod.
 #modGPS <- gps(model = mod, data = data, no.sim = 1000)
-#show(modGPS) ## time consuming copmutations
+#show(modGPS) ## time consuming computations
 
 ## See the GPS values for data.
-#GPS(modGPS) ## time consuming copmutations
+#GPS(modGPS) ## time consuming computations
 }
-
 
 \keyword{methods}
 \keyword{survival}

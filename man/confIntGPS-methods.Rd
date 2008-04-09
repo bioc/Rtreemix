@@ -5,7 +5,6 @@
 \alias{confIntGPS-methods}
 \alias{confIntGPS,RtreemixData,numeric-method}
 
-
 \title{Method for calculating GPS values and their 95\% bootstrap
   confidence intervals}
 
@@ -18,7 +17,7 @@
 }
 
 \usage{
-\S4method{confIntGPS}{RtreemixData,numeric}(data, K, ...)
+\S4method{confIntGPS}{RtreemixData,numeric}(data, K, \dots)
 }
 
 \arguments{
@@ -28,7 +27,7 @@
     of genetic events should NOT be greater than 20.}
   \item{K}{An \code{integer} larger than 0 specifying the number of
     branchings in the mixture model.}
-  \item{...}{
+  \item{\dots}{
     \code{sampling.mode} is a \code{character} that specifies the
       sampling mode ("constant" or "exponential") used in the waiting time
       simulations. Its default value is "exponential".
@@ -49,7 +48,7 @@
 
 \value{
   The function returns an object from the \code{RtreemixGPS} class that
-  containes the calculated GPS values, their 95\% confidence intervals,
+  contains the calculated GPS values, their 95\% confidence intervals,
   the model used for the computation, the data, and so on (see
   \code{\link{RtreemixGPS-class}}). The GPS values are represented as a
   \code{numeric} vector with length equal to the number of samples in
@@ -62,7 +61,7 @@
     confidence intervals are to be calculated should not have more 
     than 20 genetic events. The reason for this is that the number of all possible patterns 
     for which the GPS values are calculated during a computationally intensive simulations 
-    is in this case 2^20. This demands too much memory.
+    is in this case $2^{20}$. This demands too much memory.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 }
