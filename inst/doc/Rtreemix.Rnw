@@ -204,9 +204,9 @@ simulation for a given large number of simulation iterations, and for a specifie
 and its corresponding sampling parameter. The result of the \texttt{GPS} calculation is given as an
 object of the class \texttt{RtreemixGPS} which extends the class \texttt{RtreemixData}. Moreover, with the function  \texttt{confIntGPS} 
 the package gives the possibility to analyze the variance of the \texttt{GPS} values.
-This function first calculates the \texttt{GPS} for the patterns in a given dataset data based on a fitted \texttt{K}-mutagenetic trees
+This function first calculates the \texttt{GPS} for the patterns in a given dataset based on a fitted \texttt{K}-mutagenetic trees
 mixture model. Then, it derives a 95\% confidence intervals for the \texttt{GPS} values with
-bootstrap analysis. The data and \texttt{K} have to be specified. The confidence intervals reflect the variability of the
+bootstrap analysis. The data and the number of tree components \texttt{K} have to be specified. The confidence intervals reflect the variability of the
 estimated \texttt{GPS} values. The results are again given as an \texttt{RtreemixGPS} object. The usage of the functions \texttt{gps} 
 and \texttt{confIntGPS} is demonstrated in the PDF file \textit{ExtendedVignette}. 
 \section{Stability analysis with the \texttt{Rtreemix} package}
@@ -219,7 +219,7 @@ models fitted to observations drawn from these true models. The similarity betwe
 compared to the similarities between the true and a sufficient number of random models sampled uniformly from the mixture model space. 
 The quality of a fitted attribute is then assessed by estimating a p-value as the percentage of cases in which the true model is closer 
 to a random model than to the fitted model with respect to the chosen model attribute. More details about performing stability analysis 
-of the mutagenetic tree mixture modes and interpreting the results can be found in \cite(Bogo2008). Simple code examples for the 
+of the mutagenetic tree mixture modes and interpreting the results can be found in \cite{Bogo2008}. Simple code examples for the 
 stability analysis of a mutagenetic trees mixture models are given in the \textit{doc} folder of the package in the PDF file \textit{ExtendedVignette}. 
            
 \bibliography{Rtreemix}
