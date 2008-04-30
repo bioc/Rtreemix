@@ -1,7 +1,7 @@
 Package: Rtreemix
 Type: Package
 Title: Rtreemix: Mutagenetic trees mixture models.
-Version: 1.2.0
+Version: 1.3.0
 Author: Jasmina Bogojeska
 Maintainer: Jasmina Bogojeska <jasmina@mpi-inf.mpg.de>
 Description: Rtreemix is a package that offers an environment for estimating the mutagenetic trees mixture models from cross-sectional data and using them for various predictions. It includes functions for fitting the trees mixture models, likelihood computations, model comparisons, waiting time estimations, stability analysis, etc.
