@@ -475,6 +475,7 @@ setMethod("show", "RtreemixModel", function(object) .printRtreemixModel(x = obje
         }
         arrowLen <- par("pin")[1]/diff(par("usr")[1:2]) * min(nodeDims)/pi
         lapply(AgEdge(x), lines, len = arrowLen, edgemode = edgemode)
+        #lapply(AgEdge(x), lines, len = arrowLen)
         invisible(x)
     }
 
@@ -532,18 +533,33 @@ setMethod("plot",
   
             require('Rgraphviz') || stop('package Rgraphviz is required')     
             if(missing(k)) {
-             if(numTrees(x) > 1) {
+             if(numTrees(x) > 1) { 
                 par(mfrow = c(ceiling(numTrees(x)/2), 2))
-                lapply(Trees(x), .plotRes, fontSize)
-             } else
-              .plotRes(getTree(x, 1), fontSize)
-            } else  
-            if ((k > numTrees(x)) || (k < 1)) {
-                stop("The tree number must be an integer greater than zero and smaller or equal to the number of tree components in the mixture model!")                
-            } else {
+                #lapply(Trees(x), .plotRes, fontSize)
+                lapply(Trees(x), function(tr, fs = fontSize) {
+                                    ## check whether each node (except root) has inEdges in order to remove pruned nodes
+                                    indic <- sapply(nodes(tr)[-1], function(nd, tr = tr) {ifelse(length(inEdges(nd, tr)[[1]]) < 1, 1, 0)}, tr)
+                                    if (sum(indic) > 0) {
+                                      grTemp <- removeNode(nodes(tr)[which(indic > 0) + 1], tr) ## +1 for skipping root
+                                    } else {
+                                      grTemp <- tr
+                                    }
+                                    .plotRes(grTemp, fontSize)
+                                  }, fontSize)
+             } else {
+              tr <- getTree(x, 1)
+              ## check whether each node (except root) has inEdges in order to remove pruned nodes
+              indic <- sapply(nodes(tr)[-1], function(nd, tr = tr) {ifelse(length(inEdges(nd, tr)[[1]]) < 1, 1, 0)}, tr)
+              if (sum(indic) > 0) {
+                tr <- removeNode(nodes(tr)[which(indic > 0) + 1], tr) ## +1 for skipping root
+              }             
+              .plotRes(tr, fontSize)}
+            } else {  
+              if ((k > numTrees(x)) || (k < 1)) {
+                  stop("The tree number must be an integer greater than zero and smaller or equal to the number of tree components in the mixture model!")                
+              } else {
                 .plotRes(getTree(x, k), fontSize)
-            }
-  
+              }}               
          })  
 
 

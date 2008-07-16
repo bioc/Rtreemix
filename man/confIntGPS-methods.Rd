@@ -43,7 +43,9 @@
       is 1000.
     \code{equal.star} is a \code{logical} specifying whether to use
       equal edge weights in the noise component. The default value is
-      \code{TRUE}.
+      \code{TRUE}. When you have few data samples always use its default value 
+      (\code{TRUE}) to ensure nonzero probabilities for all possible 
+      patterns (sets of events).
   }
 }
 
@@ -62,7 +64,7 @@
     confidence intervals are to be calculated should not have more 
     than 20 genetic events. The reason for this is that the number of all possible patterns 
     for which the GPS values are calculated during a computationally intensive simulations 
-    is in this case $2^20$. This demands too much memory.
+    is in this case $2^{20}$. This demands too much memory.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 }

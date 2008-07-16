@@ -30,7 +30,9 @@ the number of trees \code{K} have to be specified.
       weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.
     \code{equal.edgeweights} is a \code{logical} specifying whether to use
       equal edge weights in the noise component. The default value is
-      \code{TRUE}.
+      \code{TRUE}. When you have few data samples always use its default value 
+      (\code{TRUE}) to ensure nonzero probabilities for all possible 
+      patterns (sets of events).
     \code{seed} is a positive \code{integer} specifying the random generator
       seed. The default value is (-1) and then the time is used as a
       random generator.

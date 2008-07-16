@@ -464,7 +464,7 @@ SEXP R_fit(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
 
 
-  SEXP result, list_names;
+  SEXP result, list_names, edg_mode;
 
   
 
@@ -538,11 +538,14 @@ SEXP R_fit(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
     PROTECT(one_graph = NEW_OBJECT(klass));
 
-    SET_SLOT(one_graph, Rf_install("edgemode"),  
+    // R version >= 2.7.0 - edgemode slot deprecated
+	  PROTECT(edg_mode = allocVector(VECSXP, 1));  
+	  
+	  setAttrib(edg_mode, R_NamesSymbol, R_scalarString("edgemode"));
+	  
+    SET_VECTOR_ELT(edg_mode, 0, R_scalarString("directed"));  
 
-	     R_scalarString("directed"));
-
-    
+    SET_SLOT(one_graph, Rf_install("graphData"), edg_mode);   
 
     num_nodes = G[k].number_of_nodes();
 
@@ -718,7 +721,7 @@ SEXP R_fit(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
     
 
-    UNPROTECT(1); // one_graph
+    UNPROTECT(2); // one_graph, edg_mode
 
   }    
 
@@ -814,7 +817,7 @@ SEXP R_fit1(SEXP R_profile, SEXP R_pattern, SEXP R_eps, SEXP R_weighing) {
 
 
 
-  SEXP result, list_names;
+  SEXP result, list_names, edg_mode;
 
   
 
@@ -876,10 +879,14 @@ SEXP R_fit1(SEXP R_profile, SEXP R_pattern, SEXP R_eps, SEXP R_weighing) {
 
     PROTECT(one_graph = NEW_OBJECT(klass));
 
-    SET_SLOT(one_graph, Rf_install("edgemode"),  
+    // R version >= 2.7.0 - edgemode slot deprecated
+	  PROTECT(edg_mode = allocVector(VECSXP, 1));  
+	  
+	  setAttrib(edg_mode, R_NamesSymbol, R_scalarString("edgemode"));
+	  
+    SET_VECTOR_ELT(edg_mode, 0, R_scalarString("directed"));  
 
-	     R_scalarString("directed"));
-
+    SET_SLOT(one_graph, Rf_install("graphData"), edg_mode);   
     
 
     num_nodes = G[k].number_of_nodes();
@@ -1052,7 +1059,7 @@ SEXP R_fit1(SEXP R_profile, SEXP R_pattern, SEXP R_eps, SEXP R_weighing) {
 
     
 
-    UNPROTECT(1); // one_graph
+    UNPROTECT(2); // one_graph, edg_mode
 
   }    
 
@@ -1152,7 +1159,7 @@ SEXP R_fit0(SEXP R_profile, SEXP R_pattern, SEXP R_uniform_noise,
 
 
 
-  SEXP result, list_names;
+  SEXP result, list_names, edg_mode;
 
   
 
@@ -1214,9 +1221,14 @@ SEXP R_fit0(SEXP R_profile, SEXP R_pattern, SEXP R_uniform_noise,
 
     PROTECT(one_graph = NEW_OBJECT(klass));
 
-    SET_SLOT(one_graph, Rf_install("edgemode"),  
+    // R version >= 2.7.0 - edgemode slot deprecated
+	  PROTECT(edg_mode = allocVector(VECSXP, 1));  
+	  
+	  setAttrib(edg_mode, R_NamesSymbol, R_scalarString("edgemode"));
+	  
+    SET_VECTOR_ELT(edg_mode, 0, R_scalarString("directed"));  
 
-	     R_scalarString("directed"));
+    SET_SLOT(one_graph, Rf_install("graphData"), edg_mode);   
 
     
 
@@ -1390,7 +1402,7 @@ SEXP R_fit0(SEXP R_profile, SEXP R_pattern, SEXP R_uniform_noise,
 
     
 
-    UNPROTECT(1); // one_graph
+    UNPROTECT(2); // one_graph, edg_mode
 
   }    
 
@@ -1536,7 +1548,7 @@ SEXP R_bootstrap(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
 
 
-  SEXP result, list_names;
+  SEXP result, list_names, edg_mode;
 
   
 
@@ -1656,9 +1668,14 @@ SEXP R_bootstrap(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
     PROTECT(one_graph = NEW_OBJECT(klass)); // the k-th tree
 
-    SET_SLOT(one_graph, Rf_install("edgemode"),  
+    // R version >= 2.7.0 - edgemode slot deprecated
+	  PROTECT(edg_mode = allocVector(VECSXP, 1));  
+	  
+	  setAttrib(edg_mode, R_NamesSymbol, R_scalarString("edgemode"));
+	  
+    SET_VECTOR_ELT(edg_mode, 0, R_scalarString("directed"));  
 
-	     R_scalarString("directed"));
+    SET_SLOT(one_graph, Rf_install("graphData"), edg_mode);   
 
     
 
@@ -1852,7 +1869,7 @@ SEXP R_bootstrap(SEXP R_profile, SEXP R_pattern, SEXP R_K, SEXP R_M,
 
     
 
-    UNPROTECT(1); // one_graph
+    UNPROTECT(2); // one_graph, edg_mode
 
   }    
 
@@ -2496,7 +2513,7 @@ SEXP R_random(SEXP R_K, SEXP R_L, SEXP R_star, SEXP R_uniform, SEXP R_min, SEXP 
 
 
 
-  SEXP result, list_names;
+  SEXP result, list_names, edg_mode;
 
   
 
@@ -2552,9 +2569,14 @@ SEXP R_random(SEXP R_K, SEXP R_L, SEXP R_star, SEXP R_uniform, SEXP R_min, SEXP 
 
     PROTECT(one_graph = NEW_OBJECT(klass));
 
-    SET_SLOT(one_graph, Rf_install("edgemode"),  
+    // R version >= 2.7.0 - edgemode slot deprecated
+	  PROTECT(edg_mode = allocVector(VECSXP, 1));  
+	  
+	  setAttrib(edg_mode, R_NamesSymbol, R_scalarString("edgemode"));
+	  
+    SET_VECTOR_ELT(edg_mode, 0, R_scalarString("directed"));  
 
-	     R_scalarString("directed"));
+    SET_SLOT(one_graph, Rf_install("graphData"), edg_mode);   
 
     
 
@@ -2730,7 +2752,7 @@ SEXP R_random(SEXP R_K, SEXP R_L, SEXP R_star, SEXP R_uniform, SEXP R_min, SEXP 
 
     
 
-    UNPROTECT(1); // one_graph
+    UNPROTECT(2); // one_graph, edg_mode
 
   }    
 

@@ -41,7 +41,8 @@
     weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.
     \code{equal.edgeweights} is a \code{logical} specifying whether to use
     equal edge weights in the noise component. The default value is
-    \code{TRUE}.
+    \code{TRUE}. When you have few data samples always use its default value (\code{TRUE}) 
+    to ensure nonzero probabilities for all possible patterns (sets of events).
     \code{seed} is a positive \code{integer} specifying the random generator
     seed. The default value is (-1) and then the time is used as a
     random generator.
@@ -60,6 +61,13 @@
   data, N. Beerenwinkel et al.}
 
 \author{Jasmina Bogojeska}
+
+\note{
+    When you have too few data samples always use the default value \code{TRUE} 
+    for the \code{equal.edgeweights}. Like this you make sure that all possible 
+    patterns (sets of events) have non-zero probabilities. If they don't the 
+    fitting procedure will not be completed and you will get an error!
+    }
  
 \seealso{
   \code{\link{RtreemixData-class}}, \code{\link{RtreemixModel-class}},
