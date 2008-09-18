@@ -1,6 +1,7 @@
 #ifndef _Array_hh
 #define _Array_hh
 
+#include <stdlib.h>
 #include <vector>
 
 namespace replaceleda{
@@ -22,7 +23,7 @@ public:
     void permute(){
 	std::vector<T> dummy;
 	while(backpoint::size() > 0){
-	    int r = int((backpoint::size() * (double) std::rand()) / (double) (RAND_MAX + 1.0));
+	    int r = int((backpoint::size() * (double) rand()) / (double) (RAND_MAX + 1.0));
 	    dummy.push_back(backpoint::at(r));
 	    backpoint::erase(backpoint::begin()+r);
 	}

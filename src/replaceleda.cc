@@ -21,7 +21,7 @@ std::vector<int> replaceleda::permute(std::vector<int> v){
     std::vector<int> dummy = v, result;
     //srand((unsigned)time(NULL));
     while(dummy.size() > 0){
-	int r = int(dummy.size() * (float) std::rand() / (float) (RAND_MAX + 1.0));
+	int r = int(dummy.size() * (float) rand() / (float) (RAND_MAX + 1.0));
 	result.push_back(dummy[r]);
 	dummy.erase(dummy.begin()+r);
     }
