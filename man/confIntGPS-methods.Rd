@@ -64,7 +64,7 @@
     confidence intervals are to be calculated should not have more 
     than 20 genetic events. The reason for this is that the number of all possible patterns 
     for which the GPS values are calculated during a computationally intensive simulations 
-    is in this case $2^{20}$. This demands too much memory.
+    is in this case \eqn{2^{20}}. This demands too much memory.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 }
