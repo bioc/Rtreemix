@@ -19,9 +19,12 @@
  events in the \code{model} cannot exceed 30.
 }
 \usage{
-\S4method{distribution}{RtreemixModel,missing,missing,missing}(model, sampling.mode, sampling.param, output.param)
-\S4method{distribution}{RtreemixModel,character,numeric,numeric}(model, sampling.mode,
-sampling.param, output.param)
+distribution(model, ...)
+
+\method{distribution}{model}(model)
+
+\method{distribution}{model, sampling.mode, sampling.param, output.param}(model, 
+                                    sampling.mode, sampling.param, output.param)
 }
 \arguments{
   \item{model}{An \code{RtreemixModel} object that encodes a

@@ -13,34 +13,34 @@ analyzes its variance with the bootstrap method. The \code{data} and
 the number of trees \code{K} have to be specified. 
 }
 \usage{
-\S4method{bootstrap}{RtreemixData,numeric}(data, K, ...)
+bootstrap(data, K, no.start.sol = 100, eps = 0, weighing = FALSE, 
+          equal.edgeweights = TRUE, seed = (-1), B = 1000, 
+          conf.interval = 0.05)
 }
 
 \arguments{
   \item{data}{An \code{RtreemixData} object giving the dataset used for
     learning the trees mixture model. }
   \item{K}{An \code{integer} larger than 0 specifying the number of
-    branchings in the mixture model.}
-  \item{...}{  
-    \code{no.start.sol} is an \code{integer} larger than 0 specifying the number of starting solutions for the k-means
-    algorithm. The default value is 100.
-    \code{eps} is a \code{numeric} giving the minimum conditional probability to include edge. The
-    default value is 0.
-    \code{weighing} is a \code{logical} specifying whether to use special
-      weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.
-    \code{equal.edgeweights} is a \code{logical} specifying whether to use
+    branchings in the mixture model.} 
+  \item{no.start.sol}{An \code{integer} larger than 0 specifying the number of starting solutions for the k-means
+    algorithm. The default value is 100.}
+  \item{eps}{A \code{numeric} giving the minimum conditional probability to include edge. The
+    default value is 0.}
+  \item{weighing}{A \code{logical} specifying whether to use special
+      weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.}
+  \item{equal.edgeweights}{A \code{logical} specifying whether to use
       equal edge weights in the noise component. The default value is
       \code{TRUE}. When you have few data samples always use its default value 
       (\code{TRUE}) to ensure nonzero probabilities for all possible 
-      patterns (sets of events).
-    \code{seed} is a positive \code{integer} specifying the random generator
+      patterns (sets of events).}
+  \item{seed}{A positive \code{integer} specifying the random generator
       seed. The default value is (-1) and then the time is used as a
-      random generator.
-    \code{B} is an \code{integer} larger than 0 specifying the number of
-      bootstrap samples. Its default value is 1000.
-    \code{conf.interval} is a \code{numeric} specifying the Confidence level
-      for the intervals. Its default value is 0.05.
-  }
+      random generator.}
+  \item{B}{An \code{integer} larger than 0 specifying the number of
+      bootstrap samples. Its default value is 1000.}
+  \item{conf.interval}{A \code{numeric} specifying the Confidence level
+      for the intervals. Its default value is 0.05.}
 }
 
 \value{

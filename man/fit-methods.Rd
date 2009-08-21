@@ -24,7 +24,8 @@
 }
  
 \usage{
-\S4method{fit}{RtreemixData,numeric}(data, K, ...)
+fit(data, K, no.start.sol = 100, eps = 0.01, weighing = FALSE, 
+    equal.edgeweights = TRUE, seed = (-1), noise = TRUE)
 }
 
 \arguments{
@@ -32,26 +33,25 @@
     learning the trees mixture model.}
   \item{K}{An \code{integer} larger than 0 specifying the number of
     branchings in the mixture model.}
-  \item{...}{
-    \code{no.start.sol} is an \code{integer} larger than 0 specifying the number of starting solutions for the k-means
-    algorithm. The default value is 100.
-    \code{eps} is a \code{numeric} giving the minimum conditional probability to include edge. The
-    default value is 0.01.
-    \code{weighing} is a \code{logical} specifying whether to use special
-    weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.
-    \code{equal.edgeweights} is a \code{logical} specifying whether to use
+  \item{no.start.sol}{An \code{integer} larger than 0 specifying the number of starting solutions for the k-means
+    algorithm. The default value is 100.}
+  \item{eps}{A \code{numeric} giving the minimum conditional probability to include edge. The
+    default value is 0.01.}
+  \item{weighing}{A \code{logical} specifying whether to use special
+    weights log(Pr(v)) for the edges (root, v). The default value is \code{FALSE}.}
+  \item{equal.edgeweights}{A \code{logical} specifying whether to use
     equal edge weights in the noise component. The default value is
     \code{TRUE}. When you have few data samples always use its default value (\code{TRUE}) 
-    to ensure nonzero probabilities for all possible patterns (sets of events).
-    \code{seed} is a positive \code{integer} specifying the random generator
+    to ensure nonzero probabilities for all possible patterns (sets of events).}
+  \item{seed}{A positive \code{integer} specifying the random generator
     seed. The default value is (-1) and then the time is used as a
-    random generator.
-    \code{noise} is a \code{logical} indicating the presence of a noise
+    random generator.}
+  \item{noise}{A \code{logical} indicating the presence of a noise
     (star) component in the fitted mixture model. It is mostly relevant
     for models with a single tree component, since it is assumed that mixture models with
-    at least two components always have the noise as a first component.
-  }
+    at least two components always have the noise as a first component.}
 }
+
 \value{
   The method returns an \code{RtreemixModel} object that represents the
   K-trees mixture model learned from the given dataset.

@@ -19,17 +19,14 @@
 }
  
 \usage{
-\S4method{plot}{RtreemixModel,missing}(x, y, ...)
+plot(x, k, fontSize = 8)
 }
 
 \arguments{
   \item{x}{An \code{RtreemixModel} object giving the mixture model that should be visualized.}
-  \item{y}{Not specified.}
-  \item{...}{
-    \code{fontSize} is the size of the text labels of the nodes and the edges of the tree components. The default value is 8.
-    \code{k} is a \code{numeric} giving the specific tree component from the given mixture model that should be plotted. Its value 
-    can be from one to the number of tree components in the given model.
-  }
+  \item{fontSize}{The size of the text labels of the nodes and the edges of the tree components. The default value is 8.}
+  \item{k}{A \code{numeric} giving the specific tree component from the given mixture model that should be plotted. Its value 
+    can be from one to the number of tree components in the given model.}
 }
 \value{
   The method returns a plot of the mixture model model.
