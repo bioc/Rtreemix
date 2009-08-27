@@ -14,13 +14,7 @@
   patterns together with their waiting and sampling times from the respective model.
 }
 \usage{
-sim(model, ...)
-
-\method{sim}{model}(model, no.draws = 10, seed = (-1))
-
-\method{sim}{model, sampling.mode, sampling.param}(model, sampling.mode, 
-                                                   sampling.param, no.sim = 10,
-                                                   seed = (-1))
+sim(model, sampling.mode, sampling.param, \dots)
 }
 
 \arguments{
@@ -32,14 +26,16 @@ sim(model, ...)
   \item{sampling.param}{A \code{numeric} that specifies the
     sampling parameter corresponding to the sampling mode given by
     \code{sampling.mode}.}
-  \item{no.draws}{An \code{integer} larger than zero specifying the
-    number of patterns that should be drawn from the given mixture model.}
-  \item{no.sim}{An \code{integer} larger than 0 giving the number of
+  \item{\dots}{
+    \code{no.draws} is an \code{integer} larger than zero specifying the
+    number of patterns that should be drawn from the given mixture model.
+    \code{no.sim} is an \code{integer} larger than 0 giving the number of
     iterations for the waiting time simulations. Its default value is
-    10.}
-  \item{seed}{A positive \code{integer} specifying the random generator
+    10.
+    \code{seed} is a positive \code{integer} specifying the random generator
     seed. Its default value is (-1) and then the time is used as a
-    random generator.}
+    random generator.
+  }
 }
 
 \value{

@@ -22,13 +22,7 @@
 }
 
 \usage{
-gps(model, ...)
-
-\method{gps}{model, data}(model, data, sampling.mode = "exponential",
-                         sampling.param = 1, no.sim = 10, seed = (-1))
-
-\method{gps}{model}(model, sampling.mode = "exponential",
-                    sampling.param = 1, no.sim = 10, seed = (-1))                         
+gps(model, data, \dots)                   
 }
 
 \section{Methods}{\describe{
@@ -48,17 +42,19 @@ gps(model, ...)
     containing the samples (patterns of genetic events) for which the GPS values
     are to be calculated. The length of each of them has to be equal
     to the number of genetic events in the \code{model}.}
-  \item{sampling.mode}{A \code{character} that specifies the
+  \item{\dots}{ 
+    \code{sampling.mode} is a \code{character} that specifies the
     sampling mode ("constant" or "exponential") used in the waiting time
-    simulations. Its default value is "exponential".}
-  \item{sampling.param}{A \code{numeric} that specifies the
+    simulations. Its default value is "exponential".
+    \code{sampling.param} is a \code{numeric} that specifies the
     sampling parameter corresponding to the sampling mode given by
-    \code{sampling.mode}. Its default value is 1.}
-  \item{no.sim}{An \code{integer} larger than 0 giving the number of
-    iterations for the waiting time simulations. Its default value is 10.}
-  \item{seed}{A positive \code{integer} specifying the random generator
+    \code{sampling.mode}. Its default value is 1.
+    \code{no.sim} is an \code{integer} larger than 0 giving the number of
+    iterations for the waiting time simulations. Its default value is 10.
+    \code{seed} is a positive \code{integer} specifying the random generator
     seed. Its default value is (-1) and then the time is used as a
-    random generator.}
+    random generator.
+  }
 }
 
 \value{
@@ -76,7 +72,7 @@ gps(model, ...)
     The mixture model used for deriving the GPS values should not have more than 
     20 genetic events. The reason for this is that the number of all possible patterns 
     for which the GPS values are calculated during a computationally intensive simulations 
-    is in this case $2^{20}$. This demands too much memory.
+    is in this case $2^20$. This demands too much memory.
     The GPS examples are time consuming. They are commented out because of the time restrictions of the check of the package.
     For trying out the code please copy it and uncomment it.
 } 

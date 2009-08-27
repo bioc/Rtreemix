@@ -14,28 +14,29 @@
   have to be specified.
 }
 \usage{
-generate(K, no.events, noise.tree = TRUE, equal.edgeweights = TRUE, 
-         prob = c(0, 1), seed = (-1))
+generate(K, no.events, \dots)
 }
 \arguments{
   \item{K}{An \code{integer} larger than 0 specifying the number of
     branchings in the mixture model.}
   \item{no.events}{An \code{integer} larger than 0 specifying the number of
     genetic events in the mixture model.}
-  \item{noise.tree}{A \code{logical} indicating the presence of a noise
+  \item{\dots}{
+    \code{noise.tree} is a \code{logical} indicating the presence of a noise
     (star) component in the random mixture model. The default value is
-    \code{TRUE}.}
-  \item{equal.edgeweights}{A \code{logical} specifying whether to use
+    \code{TRUE}.
+    \code{equal.edgeweights} is a \code{logical} specifying whether to use
     equal edge weights in the noise component. The default value is
-    \code{TRUE}.}
-  \item{prob}{A \code{numeric} vector of length 2 specifying the
+    \code{TRUE}.
+    \code{prob} is a \code{numeric} vector of length 2 specifying the
     boundaries for the edge weights of the randomly generated trees. The
     first component of the vector (the lower boundary) must be smaller
     than the second component (the upper boundary). The default value
-    is (0.0, 1.0).}
-  \item{seed}{A positive \code{integer} specifying the random generator
+    is (0.0, 1.0).
+    \code{seed} is a positive \code{integer} specifying the random generator
     seed. The default value is (-1) and then the time is used as a
-    random generator.}
+    random generator.
+  }
 }
 \value{
   The method returns an \code{RtreemixModel} object that represents the

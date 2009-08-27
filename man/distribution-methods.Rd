@@ -19,12 +19,7 @@
  events in the \code{model} cannot exceed 30.
 }
 \usage{
-distribution(model, ...)
-
-\method{distribution}{model}(model)
-
-\method{distribution}{model, sampling.mode, sampling.param, output.param}(model, 
-                                    sampling.mode, sampling.param, output.param)
+distribution(model, sampling.mode, sampling.param, output.param)
 }
 \arguments{
   \item{model}{An \code{RtreemixModel} object that encodes a
@@ -37,7 +32,7 @@ distribution(model, ...)
     corresponding to the sampling mode given by \code{sampling.mode}.}
   \item{output.param}{A \code{numeric} that specifies the
     sampling parameter for the observed output probabilities
-    corresponding to the sampling mode given by \code{sampling.mode}.}  
+    corresponding to the sampling mode given by \code{sampling.mode}.}    
 }
 
 \value{
