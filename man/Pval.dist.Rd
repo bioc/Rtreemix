@@ -28,9 +28,9 @@ Pval.dist(dist.val, random.vals)
 \author{ Jasmina Bogojeska }
 
 \seealso{
-  \code{\link{L1.dist}}, \code{\link{kullback.leibler},
+ \code{\link{L1.dist}}, \code{\link{kullback.leibler}},
     \code{\link{comp.models}}, \code{\link{stability.sim}}}
-}
+
 \examples{
 ## The function is currently defined as
 function(dist.val, random.vals) {
