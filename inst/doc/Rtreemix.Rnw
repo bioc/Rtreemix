@@ -130,7 +130,6 @@ plot(mod, fontSize = 15)
 When the mixture model contains a large number of tree components it is convenient to be able to plot a specific tree component. The following code plots the 
 second tree component of the mixture model learned from the \texttt{HIV} dataset.
 <<results = hide>>=
-dev.off()
 plot(mod, k=2, fontSize = 14)
 @
 It is assumed that mixture models with at least two components always have the noise (star) component as a first component. When only one tree component is fitted to the given data it can be either a star or a nontrivial tree component based on the choice of the parameter \texttt{noise}.
