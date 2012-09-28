@@ -152,9 +152,12 @@ Class \code{"RtreemixData"}, directly.
       mixture model as a directed \code{graphNEL} object.}
     \item{numTrees}{\code{signature(object = "RtreemixModel")}: A method
     for obtaining the number of tree components building up the mixture model.}
-    \item{plot}{\code{signature(x = "RtreemixModel", y = "missing")}: A method for visualizing the tree components comprising a mutagenetic trees mixture model.  
-    The user can also specify the \code{fontSize} (the default value is 8) used for the text labels of the nodes and the edges of the plotted trees. Additionally, one can use the parameter \code{k} to plot a certain tree component from the 
-    mixture model.}
+    \item{plot}{\code{signature(x = "RtreemixModel", y = "missing")}: A method 
+    for visualizing the tree components comprising a mutagenetic trees mixture 
+    model. The user can also specify the \code{fontSize} (the default value is 8) 
+    used for the text labels of the nodes and the edges of the plotted trees. 
+    Additionally, one can use the parameter \code{k} to plot a certain tree 
+    component from the mixture model.}
   }
 }
 \references{Learning multiple evolutionary pathways from cross-sectional
