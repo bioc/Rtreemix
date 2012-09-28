@@ -27,7 +27,7 @@
 \alias{initialize,RtreemixModel-method}
 \alias{print,RtreemixModel-method}
 \alias{show,RtreemixModel-method}
-\alias{plot,RtreemixModel-method, missing-method}
+\alias{plot,RtreemixModel,missing-method}
 
 \title{Class "RtreemixModel"}
 \description{
