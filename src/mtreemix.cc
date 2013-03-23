@@ -10,6 +10,9 @@
 
 #include "include/mtree.h"
 #include "include/mtreemix.h"
+//R includes
+#include <R.h>
+#include <Rdefines.h>
 
 vector event_freq(integer_matrix& pat)
 {
@@ -24,8 +27,9 @@ vector event_freq(integer_matrix& pat)
       freq[j] = nonnegmean(col);  // == rel. frequency
       if (freq[j] < 0.0)  // no data in this column!
 	{
-	  std::cerr << "No data in column " << j << " !" << std::endl;
-	  exit(1);
+	  //std::cerr << "No data in column " << j << " !" << std::endl;
+	  //exit(1);	
+	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n No data in column %2d!\n see warnings() and restart R", 1, j);
 	}
     }
 
@@ -460,11 +464,12 @@ double mtreemix_EM(array<string>& profile, integer_matrix& pattern, int K, int M
 	  double sum = oneK * wlike.row(i);  // sum of weighted likelihoods
 	  if (sum <= 0.0)
 	    {
-	      std::cerr << "EM aborted. Sample no. " << i + 1
-			<< " [" << pat_hat.row(i) << "] "
-			<< "has likelihood zero!" << std::endl;
+	      //std::cerr << "EM aborted. Sample no. " << i + 1
+			//<< " [" << pat_hat.row(i) << "] "
+			//<< "has likelihood zero!" << std::endl;
 	      // mtreemix_save(alpha, G, cond_prob, node_no, "Lzero");  // save model for diagnostics
-	      exit(1);
+	      //exit(1);
+		  Rf_error("internal: mtreemix invoked 'exit(%d)'\n EM aborted. Sample no. %2d has likelihood zero!\n see warnings() and restart R", 1, i + 1);
 	    }
 	  
 	  for (int k=0; k<K; k++)
@@ -589,11 +594,12 @@ double mtreemix_E_step(integer_matrix& pattern, int K, vector& alpha, array< gra
 	  double sum = oneK * wlike.row(i);  // sum of weighted likelihoods
 	  if (sum <= 0.0)
 	    {
-	      std::cerr << "E-step aborted. Sample no. " << i + 1
-			<< " [" << pat_hat.row(i) << "] "
-			<< "has likelihood zero!" << std::endl;
+	      //std::cerr << "E-step aborted. Sample no. " << i + 1
+			//<< " [" << pat_hat.row(i) << "] "
+		//	<< "has likelihood zero!" << std::endl;
 	      // mtreemix_save(alpha, G, cond_prob, node_no, "Lzero");  // save model for diagnostics
-	      exit(1);
+	      //exit(1);
+		  Rf_error("internal: mtreemix invoked 'exit(%d)'\n EM aborted. Sample no. %2d has likelihood zero!\n see warnings() and restart R", 1, i + 1);
 	    }
 	  
 	  for (int k=0; k<K; k++)
@@ -623,7 +629,8 @@ double mtreemix_loglike(integer_matrix& pattern, int K, vector& alpha, array<gra
 
       if (sum <= 0.0)
 	{
-	  std::cerr << "Warning: The sample: [" << pattern.row(i) << "] has likelihood zero!" << std::endl;
+	  //std::cerr << "Warning: The sample: [" << pattern.row(i) << "] has likelihood zero!" << std::endl;
+	  Rprintf("Warning: Sample no. %2d has likelihood zero!", i);
 	}
       
       logL += log(sum);
@@ -733,8 +740,9 @@ void mtreemix_save(vector& alpha, array< graph >& G, array< map<edge,double> >& 
   std::ofstream mtreemix(filename);
   if (! mtreemix)
     {
-      std::cerr << "Can't open output file -- " << filename << std::endl;
-      exit(1);
+      //std::cerr << "Can't open output file -- " << filename << std::endl;
+      //exit(1);
+	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Can't open output file %s!\n see warnings() and restart R", 1, filename);
     }
 
   mtreemix << alpha << std::endl;
@@ -766,8 +774,9 @@ array<string> mtreemix_load(vector& alpha, array< graph >& G, array< map<node,st
   std::ifstream mtreemix(filename);
   if (! mtreemix)
     {
-      std::cerr << "Can't open input file -- " << filename << std::endl;
-      exit(1);
+      //std::cerr << "Can't open input file -- " << filename << std::endl;
+      //exit(1);
+	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Can't open input file %s!\n see warnings() and restart R", 1, filename);
     }
   
   mtreemix >> alpha >> std::ws;
@@ -880,8 +889,9 @@ array< map<edge,double> > waiting_times(array< map<edge,double> >& cond_prob, in
       break;
     
     default :
-      std::cerr << "Unknown sampling_mode -- " << sampling_mode << std::endl;
-      exit(1);
+      //std::cerr << "Unknown sampling_mode -- " << sampling_mode << std::endl;
+      //exit(1);
+	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Unknown sampling mode %2d!\n see warnings() and restart R", 1, sampling_mode);
     }
   return lambda;
 }
