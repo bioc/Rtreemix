@@ -11,10 +11,6 @@
 #include "include/kmeans.h"
 #include "include/mtree.h"
 
-//R includes
-#include <R.h>
-#include <Rdefines.h>
-
 
 int argmin(vector& x, array<vector>& M)
 {
@@ -60,10 +56,9 @@ array<vector> kmeans_init(int K, matrix& X, double min_diff = 1e-10)
       
   if (i >= N)  // failure
     {
-      //std::cerr << "k-means: Unable to find k = " << K << " sufficiently (min_diff >= " << min_diff << ") different vectors!" << std::endl
-		//<< "         Try changing k or min_diff." << std::endl;
-      //exit(1);
-	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n k-means: Unable to find k = %d sufficiently (min_diff >= %5.3e) different vectors!\n Try changing k or min_diff.\n", K, min_diff);
+      std::cerr << "k-means: Unable to find k = " << K << " sufficiently (min_diff >= " << min_diff << ") different vectors!" << std::endl
+		<< "         Try changing k or min_diff." << std::endl;
+      exit(1);
     }
   
   return M;

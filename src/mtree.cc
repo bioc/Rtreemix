@@ -11,10 +11,6 @@
 
 #include "include/mtree.h"
 
-//R includes
-#include <R.h>
-#include <Rdefines.h>
-
 
 array<string> load_profile(char *filestem, int L)
 {
@@ -44,9 +40,8 @@ array<string> load_profile(char *filestem, int L)
       
       if (j != L)
 	{
-	  //std::cerr << "Number of profile labels does not coincide with number of data columns and/or model dimensions!" << std::endl;
-	  //exit(1);
-	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Number of profile labels does not coincide with number of data columns and/or model dimensions!\n see warnings() and restart R", 1);
+	  std::cerr << "Number of profile labels does not coincide with number of data columns and/or model dimensions!" << std::endl;
+	  exit(1);
 	}
     }
 
@@ -72,9 +67,8 @@ void save_profile(array<string>& profile, char* filestem)
   std::ofstream prf(filename);
   if (! prf)
     {
-      //std::cerr << "Can't open output file -- " << filename << std::endl;
-      //exit(1);
-	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Can't open output file %s!\n see warnings() and restart R", 1, filename);
+      std::cerr << "Can't open output file -- " << filename << std::endl;
+      exit(1);
     }
   
   for (int j=0; j<L; j++)
@@ -96,9 +90,8 @@ integer_matrix load_pattern(char *filestem)
   std::ifstream patfile(filename);
   if (! patfile)
     {
-      //std::cerr << "Can't open input file -- " << filename << std::endl;
-      //exit(1);
-	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Can't open input file %s!\n see warnings() and restart R", 1, filename);
+      std::cerr << "Can't open input file -- " << filename << std::endl;
+      exit(1);
     }
   patfile >> pattern;
   patfile.close();
@@ -116,9 +109,8 @@ void save_pattern(integer_matrix& pattern, char *filestem)
   std::ofstream patfile(filename);
   if (! patfile)
     {
-      //std::cerr << "Can't open output file -- " << filename << std::endl;
-      //exit(1);
-	  Rf_error("internal: mtreemix invoked 'exit(%d)'\n Can't open output file %s!\n see warnings() and restart R", 1, filename);
+      std::cerr << "Can't open output file -- " << filename << std::endl;
+      exit(1);
     }
   patfile << pattern;
   patfile.close();
@@ -155,8 +147,7 @@ matrix pair_probs(integer_matrix& pat, vector& resp)
 	
 	if (count == 0)  // no data in the column pair (j1,j2)
 	  {
-	    //std::cerr << "Warning: No data in column pair (" << j1 << ", " << j2 << ")! Assuming independence." << std::endl;
-		Rprintf("Warning: No data in column pair (%d, %d)! Assuming independence!\n", j1, j2);
+	    std::cerr << "Warning: No data in column pair (" << j1 << ", " << j2 << ")! Assuming independence." << std::endl;
 	    wcount = P(0,j1) * P(0,j2);  // assuming independence
 	  }
 	

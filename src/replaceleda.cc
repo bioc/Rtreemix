@@ -4,10 +4,6 @@
 #include <cstdarg>
 #include <sstream>
 
-//R includes
-#include <R.h>
-#include <Rdefines.h>
-
 //using namespace replaceleda;
 
 //template<class T>
@@ -368,10 +364,9 @@ void replaceleda::printGraph (replaceleda::graph &g, edge_array<double> &weights
    node v;
     edge e;
     
-    //std::cerr << "#nodes: " << g.number_of_nodes() << " #edges: " << g.number_of_edges() << std::endl;
-	Rprintf("#nodes %2d #edges %2d\n", g.number_of_nodes(), g.number_of_edges());
+    std::cerr << "#nodes: " << g.number_of_nodes() << " #edges: " << g.number_of_edges() << std::endl;
     list<node> xxx = g.all_nodes();
-    /*
+    
     forall_nodes(v, g){
 	std::cerr << v << " " << v->getIndex() << std::endl;
 	std::cerr << "(" << g.indeg(v) << "," << g.outdeg(v) << "," << g.degree(v) << "):" << std::endl;
@@ -381,7 +376,7 @@ void replaceleda::printGraph (replaceleda::graph &g, edge_array<double> &weights
 	    std::cerr << v->getIndex() << " -" << weights[e] << "-> " << t->getIndex() << std::endl; 
 	}
     }
-	*/
+
    
 
 }
