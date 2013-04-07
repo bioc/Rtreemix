@@ -10,6 +10,10 @@
 
 #include "include/mtree.h"
 #include "include/mtreemix.h"
+#include "include/Rtreemix_patch.h"
+//R includes
+#include <R.h>
+
 
 vector event_freq(integer_matrix& pat)
 {
@@ -25,7 +29,7 @@ vector event_freq(integer_matrix& pat)
       if (freq[j] < 0.0)  // no data in this column!
 	{
 	  std::cerr << "No data in column " << j << " !" << std::endl;
-	  exit(1);
+	  _Rtreemix_exit(1);
 	}
     }
 
@@ -464,7 +468,7 @@ double mtreemix_EM(array<string>& profile, integer_matrix& pattern, int K, int M
 			<< " [" << pat_hat.row(i) << "] "
 			<< "has likelihood zero!" << std::endl;
 	      // mtreemix_save(alpha, G, cond_prob, node_no, "Lzero");  // save model for diagnostics
-	      exit(1);
+	      _Rtreemix_exit(1);
 	    }
 	  
 	  for (int k=0; k<K; k++)
@@ -593,7 +597,7 @@ double mtreemix_E_step(integer_matrix& pattern, int K, vector& alpha, array< gra
 			<< " [" << pat_hat.row(i) << "] "
 			<< "has likelihood zero!" << std::endl;
 	      // mtreemix_save(alpha, G, cond_prob, node_no, "Lzero");  // save model for diagnostics
-	      exit(1);
+	      _Rtreemix_exit(1);
 	    }
 	  
 	  for (int k=0; k<K; k++)
@@ -734,7 +738,7 @@ void mtreemix_save(vector& alpha, array< graph >& G, array< map<edge,double> >& 
   if (! mtreemix)
     {
       std::cerr << "Can't open output file -- " << filename << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
 
   mtreemix << alpha << std::endl;
@@ -767,7 +771,7 @@ array<string> mtreemix_load(vector& alpha, array< graph >& G, array< map<node,st
   if (! mtreemix)
     {
       std::cerr << "Can't open input file -- " << filename << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   
   mtreemix >> alpha >> std::ws;
@@ -881,7 +885,7 @@ array< map<edge,double> > waiting_times(array< map<edge,double> >& cond_prob, in
     
     default :
       std::cerr << "Unknown sampling_mode -- " << sampling_mode << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   return lambda;
 }

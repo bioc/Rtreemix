@@ -10,6 +10,11 @@
 
 #include "include/kmeans.h"
 #include "include/mtree.h"
+#include "include/Rtreemix_patch.h"
+
+//R includes
+#include <R.h>
+//#include <Rdefines.h>
 
 
 int argmin(vector& x, array<vector>& M)
@@ -58,7 +63,7 @@ array<vector> kmeans_init(int K, matrix& X, double min_diff = 1e-10)
     {
       std::cerr << "k-means: Unable to find k = " << K << " sufficiently (min_diff >= " << min_diff << ") different vectors!" << std::endl
 		<< "         Try changing k or min_diff." << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   
   return M;

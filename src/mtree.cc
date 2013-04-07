@@ -10,6 +10,10 @@
 
 
 #include "include/mtree.h"
+#include "include/Rtreemix_patch.h"
+
+//R includes
+#include <R.h>
 
 
 array<string> load_profile(char *filestem, int L)
@@ -41,7 +45,7 @@ array<string> load_profile(char *filestem, int L)
       if (j != L)
 	{
 	  std::cerr << "Number of profile labels does not coincide with number of data columns and/or model dimensions!" << std::endl;
-	  exit(1);
+	  _Rtreemix_exit(1);
 	}
     }
 
@@ -68,7 +72,7 @@ void save_profile(array<string>& profile, char* filestem)
   if (! prf)
     {
       std::cerr << "Can't open output file -- " << filename << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   
   for (int j=0; j<L; j++)
@@ -91,7 +95,7 @@ integer_matrix load_pattern(char *filestem)
   if (! patfile)
     {
       std::cerr << "Can't open input file -- " << filename << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   patfile >> pattern;
   patfile.close();
@@ -110,7 +114,7 @@ void save_pattern(integer_matrix& pattern, char *filestem)
   if (! patfile)
     {
       std::cerr << "Can't open output file -- " << filename << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   patfile << pattern;
   patfile.close();

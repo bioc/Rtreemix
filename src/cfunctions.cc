@@ -9,6 +9,9 @@
 
 #include "include/mtreemix.h"
 #include "include/cfunctions.h"
+#include "include/Rtreemix_patch.h"
+//R includes
+#include <R.h>
 
 
 integer_matrix resample(integer_matrix& pattern, matrix& resp, int S, matrix& bresp)
@@ -239,7 +242,7 @@ array< map<edge,double> > rescale_cond_prob(array< graph >& G, array< map<edge,d
       
     default :
       std::cerr << "Unknown sampling_mode -- " << sampling_mode << std::endl;
-      exit(1);
+      _Rtreemix_exit(1);
     }
   
   return cond_prob_prime;

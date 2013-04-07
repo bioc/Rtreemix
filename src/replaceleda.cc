@@ -4,6 +4,9 @@
 #include <cstdarg>
 #include <sstream>
 
+//R includes
+#include <R.h>
+
 //using namespace replaceleda;
 
 //template<class T>
