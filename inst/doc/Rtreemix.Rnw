@@ -92,7 +92,7 @@ It should be also pointed out that a text file with a specific format can be use
 such file is the file \textit{treemix.pat} in the \textit{examples} directory of the package. The text files used to create an \texttt{RtreemixData} 
 object should follow the format of this file. Using \textit{treemix.pat} the \texttt{RtreemixData} object is created as follows.
 <<results = hide>>=
-ex.data <- new("RtreemixData", File = paste(.path.package(package = "Rtreemix"), "/examples/treemix.pat", sep = ""))
+ex.data <- new("RtreemixData", File = paste(path.package(package = "Rtreemix"), "/examples/treemix.pat", sep = ""))
 show(ex.data) ## show the RtreemixData object
 @
 One can also create an \texttt{RtreemixData} object by specifying the set of patient profiles as a binary matrix as shown in the code below.
