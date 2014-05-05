@@ -1,4 +1,4 @@
-PKG_CFLAGS=-DUSEDOUBLE -Wno-unused -Dexit=_Rtreemix_exit
+PKG_CFLAGS=-DUSEDOUBLE -Dexit=_Rtreemix_exit
 
 PKG_LIBS=-lm
 
