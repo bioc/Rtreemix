@@ -36,7 +36,7 @@
 
 
 
-extern "C" {
+
 
 
 
@@ -53,7 +53,7 @@ array<string> C_get_profile(SEXP R_events);
 integer_matrix C_get_pattern(SEXP R_mat);
 
 
-
+extern "C" {
 SEXP R_int_matrix(integer_matrix C_mat);
 
 SEXP R_all_patterns(SEXP R_no_events);
@@ -133,7 +133,7 @@ SEXP R_distr(SEXP R_L, SEXP R_trees, SEXP R_alpha, SEXP R_sampling_mode,
 
 
 
-
+}
 
 
 // Function that converts an R character vector to an array of strings
@@ -231,7 +231,7 @@ integer_matrix C_get_pattern(SEXP R_mat) {
 }
 
 
-
+extern "C" {
 // Function for converting from the C structure integer_matrix to an R matrix of integers
 
 SEXP R_int_matrix(integer_matrix C_mat) {   
