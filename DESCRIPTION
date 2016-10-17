@@ -1,7 +1,7 @@
 Package: Rtreemix
 Type: Package
 Title: Rtreemix: Mutagenetic trees mixture models.
-Version: 1.36.0
+Version: 1.37.0
 Author: Jasmina Bogojeska
 Maintainer: Jasmina Bogojeska <jasmina.bogojeska@gmail.com>
 Description: Rtreemix is a package that offers an environment for
